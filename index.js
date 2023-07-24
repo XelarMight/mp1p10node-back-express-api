@@ -7,7 +7,7 @@ const bodyParser = require('body-parser')
 const app = express();
 const MongoClient = require('mongodb').MongoClient
 
-const connectionString = 'mongodb+srv://repairadmin:dbTourist4321@cluster0.eeaglqg.mongodb.net/?retryWrites=true&w=majority';
+const connectionString = 'mongodb+srv://nourl:sofieb@cluster0.eeaglqg.mongodb.net/?retryWrites=true&w=majority';
 //const databaseName = 'examen_duo_mean';
 
 app.use(bodyParser.urlencoded({ extended: true }));
