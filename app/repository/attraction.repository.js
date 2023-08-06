@@ -46,26 +46,21 @@ const MongoClient = require('mongodb').MongoClient;
 const connectionString = 'mongodb+srv://repairadmin:dbTourist4321@cluster0.eeaglqg.mongodb.net/?retryWrites=true&w=majority';
 
 const getAllAttractions = async () => {
-    let result = null;
-    MongoClient.connect(connectionString, { useUnifiedTopology: true })
-  .then(client => {
+  try {
+    const client = await MongoClient.connect(connectionString, {
+      useUnifiedTopology: true
+    });
+
     const db = client.db('db_secteur_tourist');
     const collection = db.collection('attraction');
-    collection
-    .find()
-    .toArray()
-    .then((attractions) => {
-        console.log(attractions);
-        result = attractions;
-        //res.json(attractions);
-    })
-    .catch((error) => {
-      result = { message: `Error fetching attractions ${error}` };
-    });
-   })
-  .catch(error => { { message: 'Error Connecting to Database' }; console.error(error)});
-  return result;
-}
+    const attractions = await collection.find().toArray();
+    console.log(attractions);
+    return attractions;
+  } catch (error) {
+    console.error('Error connecting to database', error);
+    return null; // or throw an error depending on how you want to handle it
+  }
+};
 
 module.exports = {
     getAllAttractions

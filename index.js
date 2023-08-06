@@ -13,14 +13,15 @@ const connectionString = 'mongodb+srv://repairadmin:dbTourist4321@cluster0.eeagl
 //const databaseName = 'examen_duo_mean';
 
 // app.use('/api/v1', routes)
-app.use('/api/v1', routes)
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 app.use(express.json())
 app.use(express.urlencoded({
     extended: true
 }))
+
+app.use('/api/v1', routes)
 
 MongoClient.connect(connectionString, { useUnifiedTopology: true })
   .then(client => {
@@ -34,6 +35,6 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true })
      app.listen(3500, () => {
        console.log('Server Started at 3500');
      });
-     
+
    })
   .catch(error => console.error(error))
