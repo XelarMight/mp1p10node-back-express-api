@@ -23,7 +23,7 @@ app.use(express.urlencoded({
 
 app.use('/api/v1', routes)
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3500;
 
 MongoClient.connect(connectionString, { useUnifiedTopology: true })
   .then(client => {
