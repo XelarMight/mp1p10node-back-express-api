@@ -23,6 +23,8 @@ app.use(express.urlencoded({
 
 app.use('/api/v1', routes)
 
+const port = process.env.PORT || 3000;
+
 MongoClient.connect(connectionString, { useUnifiedTopology: true })
   .then(client => {
      console.log('Connected to Database');
@@ -32,7 +34,7 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true })
        res.send(JSON.stringify({"Hello": "Hello World"}));
      });
 
-     app.listen(3500, () => {
+     app.listen(port, () => {
        console.log('Server Started at 3500');
      });
 
